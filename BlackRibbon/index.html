@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="author" content="">
+    <title>Black Ribbon : สร้างรูปโปรไฟล์ติดแถบริ้บบินสีดำ</title>
+    <meta property="og:site_name" content="Black Ribbon" />
+    <meta property="og:url" content="http://blackribbon.azurewebsites.net" />
+    <meta property="og:title" content="เครื่องมือสร้างรูปโปรไฟล์ติดแถบริ้บบินสีดำ" />
+    <meta property="og:image" content="http://blackribbon.azurewebsites.net/03.png" />
+    <meta property="og:description" content="สร้างรูปโปรไฟล์ติดแถบริ้บบินสีดำ อัพโหลดรูปแล้วกดบันทึก save as ได้ทันที" />
+    <meta property="og:locale" content="th_TH" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="/css/material-icons.css">
+    <link rel="stylesheet" href="/css/material.blue_grey-indigo.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-85754287-1', 'auto');
+        ga('send', 'pageview');
+        ga('Main.send', 'event', 'สร้างรูปโปรไฟล์ติดแถบริ้บบินสีดำ', 'view', '');
+    </script>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <!--<header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title font-title" style="font-size: 2.2em">
+                    <i class="material-icons">favorite</i> สร้างรูปเรารักในหลวง
+                </span>
+            </div>
+        </header>-->
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <h1 class="font-title">สร้างรูปโปรไฟล์ติดแถบ Ribbon สีดำ</h1>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--12-col-phone text-right" >
+                        <canvas id="myCanvas" width="600" height="600" style="float:right;border:1px solid red;display:none"></canvas>
+                        <canvas id="imageCanvas" width="600" height="600" style="float:right"></canvas>
+                        <canvas id="imageCanvasDownload" width="600" height="600" style="float:right;display:none"></canvas>
+                        <br style="clear:both">
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">                        
+						<div class="mdl-textfield mdl-js-textfield">
+                            <span>1. เลือกแบบ ribbon</span><br>
+						    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+							     <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" onclick="handleClick(this);" checked>
+							     <span class="mdl-radio__label">แบบที่1</span>
+							</label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+							     <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2" onclick="handleClick(this);">
+							     <span class="mdl-radio__label">แบบที่2</span>
+							</label>
+						</div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <span>2. เลือกรูป Profile จากเครื่องของคุณ (แนะนำเป็น 4 เหลี่ยมจตุรัส)</span>
+                            <input class="mdl-textfield__input" type="file" id="imageLoader" name="imageLoader" value="เลือกรูปจากเครื่องคอมพิวเตอร์">
+                        </div>                        
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <span>3. คลิกขวาที่รูป แล้วกด save as หรือปุ่ม Download ได้ทันที</span>
+                            <br>
+                        </div>
+                        <div class="text-left">
+                            <a href="#" id="download" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><i class="material-icons" style="top:0">file_download</i> ดาวน์โหลด</a> 
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <small>
+                                - รูปภาพ by <a href="https://www.facebook.com/jibbazee/posts/10153967020642895" target="_blank">Jibbazee</a><br>
+                                - ขอบคุณแนวคิดจาก <a href="https://earthchie.com/loveking" target="_blank">https://earthchie.com/loveking</a><br>
+                                - source code on <a href="https://github.com/iiwudaffk/BlackRibbonProfileImage" target="_blank">GitHub</a> by <a href="https://www.facebook.com/iiwudaffk" target="_blank">IIwuDaFFK</a> naja<br>
+                            </small>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="container">
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/jcanvas.min.js"></script>
+    <script defer src="/js/material.min.js"></script>
+    <script>
+        // Store the canvas object into a variable
+        var $myCanvas = $('#myCanvas');
+        var a = $myCanvas.attr('width');
+        var b = $myCanvas.attr('height');
+
+        // rectangle shape 
+        $myCanvas.drawImage({
+            source: '02.png',
+            x: 0, y: 0,
+            width: a, height: b,
+            fromCenter: false,
+            shadowColor: '#222',
+            shadowBlur: 3,
+            layer: true,
+            draggable: true,
+            bringToFront: true,
+        });
+
+
+        var imgbg = new Image();
+        imgbg.crossorigin = "anonymous"
+        imgbg.src = '01.png';
+        function handleClick(cb) {
+            if (cb.value == "1") {
+                imgbg.src = '01.png';
+                render();
+            } else if (cb.value == "2") {
+                imgbg.src = '02.png';
+                render();
+            } else {
+                imgbg.src = '03.png';
+                render();
+            }
+        }
+
+        var imgProfile = new Image();
+        imgProfile.crossorigin = "anonymous"
+        var imageLoader = document.getElementById('imageLoader');
+        imageLoader.addEventListener('change', handleImage, false);
+        var canvas = document.getElementById('imageCanvas');
+        var ctx = canvas.getContext('2d');
+
+        function handleImage(e) {
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                imgProfile.src = event.target.result;
+                render();
+            }
+            reader.readAsDataURL(e.target.files[0]);
+
+        }
+
+        var render = function () {
+            var img = new Image();
+            img.onload = function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (imgProfile.src != "" && imgProfile.src != null) {
+                    ctx.drawImage(imgProfile, 0, 0, imgProfile.width, imgProfile.height, 0, 0, canvas.width, canvas.height);
+                }
+                ctx.drawImage(imgbg, 0, 0, imgbg.width, imgbg.height, 0, 0, canvas.width, canvas.height);
+            }
+            img.src = imgbg.src;
+        };
+        render();
+
+        download.onclick = function (e) {
+            this.href = canvas.toDataURL();
+            this.download = 'BlackRibbon.png';
+        };
+    </script>
+</body>
+
+</html>
